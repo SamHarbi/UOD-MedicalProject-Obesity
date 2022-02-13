@@ -8,11 +8,16 @@ model-viewer {
     height: 1000px;
 }
 
+model-viewer#reveal {
+    --poster-color: transparent;
+  }
+
 .card {
     margin: 2%;
-    height: 800px;
+    margin-bottom: 10%;
+    height: auto;
     
-    background-color: #24272B;
+    background-color: #4A525A;
 }
 
 p{
@@ -20,6 +25,22 @@ p{
 }
 
 h1{
-    color: #24272B;
+    color: #5299D3;
     margin: 2%;
+    font-family: 'Montserrat', sans-serif;
+    text-align: left;
+}
+
+h5{
+    color: #5299D3;
+    margin: 2%;
+    text-align: left;
+}
+
+button{
+    margin: 5px;
+}
+
+#options-menu{
+    background-color: #24272B;
 }
