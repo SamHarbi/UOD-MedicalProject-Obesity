@@ -1,5 +1,6 @@
 body {
     background-color: #4A525A;
+    overflow-y: hidden;
 }
 
 model-viewer {
