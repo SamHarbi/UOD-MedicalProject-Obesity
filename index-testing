@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Import model-viewer component -->
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+    ></script>
+    <!-- Import Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--AR.js Import-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar-nft.js"></script>
+
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <!-- we import arjs version without NFT but with marker + location based support -->
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <!--Icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <!-- Import local CSS-->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    
+    <a class="btn btn-primary" id="menu" data-bs-toggle="collapse" data-bs-placement="top" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+
+  </a>
+
+
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body">
+      <div class="card">
+        <div class="card-body">
+          <p class="lead">Control Panel</p>
+          <button type="button" class="btn btn-primary">Labels</button>
+          <button type="button" class="btn btn-primary">Descriptions</button>
+          <button type="button" class="btn btn-primary">AR</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <p class="lead">Disease Intensity</p>
+          <input type="range" min="1" max="100" value="35" class="slider">
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+    <div class="container-fluid g-0" style="margin: 0%;">
+          <!-- Use it like any other HTML element -->
+          <!--<model-viewer
+            alt="An Artistic Representation of a Heart"
+            src="convert-heart.glb"
+            ar
+            ar-modes="webxr scene-viewer quick-look"
+            environment-image=""
+            poster="loading.png"
+            seamless-poster
+            shadow-intensity="1"
+            camera-controls
+            style="background-color: #4A525A;"
+            id="main"
+            camera-target="0m 0m 0m"
+          >
+          </model-viewer>-->
+
+          <a-scene embedded arjs>
+            <a-marker preset="hiro">
+              <a-entity
+                position="0 0 0"
+                scale="0.05 0.05 0.05"
+                gltf-model="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/scene.gltf"
+              ></a-entity>
+            </a-marker>
+            <a-entity camera></a-entity>
+          </a-scene>
+
+          
+        </div>
+  </body>
+  <!--
+  <script type="module">
+
+    //disable right click to stop annoying popup when panning
+    //document.addEventListener('contextmenu', event => event.preventDefault());
+
+
+
+
+    const modelViewer = document.querySelector('#main');
+    const tapDistance = 2;
+    let panning = false;
+    let panX, panY;
+    let startX, startY;
+    let lastX, lastY;
+    let metersPerPixel;
+  
+    const startPan = () => {
+      const orbit = modelViewer.getCameraOrbit();
+      const {theta, phi, radius} = orbit;
+      const psi = theta - modelViewer.turntableRotation;
+      metersPerPixel = 0.75 * radius / modelViewer.getBoundingClientRect().height;
+      panX = [-Math.cos(psi), 0, Math.sin(psi)];
+      panY = [
+        -Math.cos(phi) * Math.sin(psi),
+        Math.sin(phi),
+        -Math.cos(phi) * Math.cos(psi)
+      ];
+      modelViewer.interactionPrompt = 'none';
+    };
+  
+    const movePan = (thisX, thisY) => {
+      const dx = (thisX - lastX) * metersPerPixel;
+      const dy = (thisY - lastY) * metersPerPixel;
+      lastX = thisX;
+      lastY = thisY;
+  
+      const target = modelViewer.getCameraTarget();
+      target.x += dx * panX[0] + dy * panY[0];
+      target.y += dx * panX[1] + dy * panY[1];
+      target.z += dx * panX[2] + dy * panY[2];
+      modelViewer.cameraTarget = `${target.x}m ${target.y}m ${target.z}m`;
+  
+      // This pauses turntable rotation
+      modelViewer.dispatchEvent(new CustomEvent(
+            'camera-change', {detail: {source: 'user-interaction'}}));
+    };
+  
+    const recenter = (pointer) => {
+      panning = false;
+      if (Math.abs(pointer.clientX - startX) > tapDistance ||
+          Math.abs(pointer.clientY - startY) > tapDistance)
+        return;
+      const hit = modelViewer.positionAndNormalFromPoint(pointer.clientX, pointer.clientY);
+      modelViewer.cameraTarget =
+          hit == null ? 'auto auto auto' : hit.position.toString();
+    };
+  
+    modelViewer.addEventListener('mousedown', (event) => {
+      startX = event.clientX;
+      startY = event.clientY;
+      panning = event.button === 2 || event.ctrlKey || event.metaKey ||
+          event.shiftKey;
+      if (!panning)
+        return;
+  
+      lastX = startX;
+      lastY = startY;
+      startPan();
+      event.stopPropagation();
+    }, true);
+  
+    modelViewer.addEventListener('touchstart', (event) => {
+      const {targetTouches, touches} = event;
+      startX = targetTouches[0].clientX;
+      startY = targetTouches[0].clientY;
+      panning = targetTouches.length === 2 && targetTouches.length === touches.length;
+      if (!panning)
+        return;
+  
+      lastX = 0.5 * (targetTouches[0].clientX + targetTouches[1].clientX);
+      lastY = 0.5 * (targetTouches[0].clientY + targetTouches[1].clientY);
+      startPan();
+    }, true);
+  
+    self.addEventListener('mousemove', (event) => {
+      if (!panning)
+        return;
+  
+      movePan(event.clientX, event.clientY);
+      event.stopPropagation();
+    }, true);
+  
+    modelViewer.addEventListener('touchmove', (event) => {
+      if (!panning || event.targetTouches.length !== 2)
+        return;
+  
+      const {targetTouches} = event;
+      const thisX = 0.5 * (targetTouches[0].clientX + targetTouches[1].clientX);
+      const thisY = 0.5 * (targetTouches[0].clientY + targetTouches[1].clientY);
+      movePan(thisX, thisY);
+    }, true);
+  
+    self.addEventListener('mouseup', (event) => {
+      recenter(event);
+    }, true);
+    
+    modelViewer.addEventListener('touchend', (event) => {
+      if (event.targetTouches.length === 0) {
+        recenter(event.changedTouches[0]);
+  
+        if (event.cancelable) {
+          event.preventDefault();
+        }
+      }
+    }, true);
+  </script>-->
+</html>
+
+
