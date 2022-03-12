@@ -1,57 +1,73 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Import model-viewer component -->
-    <script
-      type="module"
-      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
-    ></script>
-    <!-- Import Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
-    />
-    <!-- JavaScript Bundle with Popper -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-      crossorigin="anonymous"
-    ></script>
 
-    <!--AR.js Import-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar-nft.js"></script>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Import model-viewer component -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
+  </script>
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
-      rel="stylesheet"
-    />
-    <!--Icons-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <!-- Import local CSS-->
-    <link rel="stylesheet" href="style.css" />
-  </head>
+  <!-- Import Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
 
-  <body>
-    
-    <a class="btn btn-primary" id="menu" data-bs-toggle="collapse" data-bs-placement="top" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
+
+  <!-- Switchery Import -->
+  <link rel="stylesheet" href="Switchery-0.8.2/switchery.css" />
+  <script src="Switchery-0.8.2/switchery.js"></script>
+
+  <!--Icons-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+  <!-- Import local CSS-->
+  <link rel="stylesheet" href="CSS/style.css" />
+  
+  <!-- Import local Javascript-->
+  <script src="Scripts/localscripts.js" async></script>
+
+</head>
+
+<body>
+
+  <a class="btn btn-primary" id="menu" data-bs-toggle="collapse" data-bs-placement="top" href="#collapseExample"
+    role="button" aria-expanded="false" aria-controls="collapseExample" onclick="showModel()">
 
   </a>
 
+
   <div class="collapse" id="collapseExample">
+
+    <div class="card">
+      <div class="card-body">
+        <h1>Heart and Lungs Under Stages of Obesity Visualiser</h1>
+        <h5>A Cross Disciplinary Project undertaken by students at the University of Dundee to visualise the Anatomy
+          changes that a person with obesity would have compared
+          to a healthy person.
+        </h5>
+      </div>
+    </div>
+
     <div class="card card-body">
       <div class="card">
         <div class="card-body">
           <p class="lead">Control Panel</p>
-          <button type="button" class="btn btn-primary">Labels</button>
-          <button type="button" class="btn btn-primary">Descriptions</button>
-          <button type="button" class="btn btn-primary">AR</button>
+          <h5><input type="checkbox" class="js-switch" checked /> Labels </h5>
+          <h5><input type="checkbox" class="js-switch" checked /> Descriptions </h5>
+          <h5><input type="checkbox" class="js-switch" checked /> Quiz </h5>
+          <button type="button" class="btn btn-primary">Marker AR</button>
+          <button type="button" class="btn btn-primary">Credits</button>
         </div>
       </div>
       <div class="card">
@@ -61,146 +77,144 @@
         </div>
       </div>
     </div>
-    </div>
+  </div>
+  </div>
   </div>
 
-    <div class="container-fluid g-0" style="margin: 0%;">
-          <!-- Use it like any other HTML element -->
-          <model-viewer
-            alt="An Artistic Representation of a Heart"
-            src="convert-heart.glb"
-            ar
-            ar-modes="webxr scene-viewer quick-look"
-            environment-image=""
-            poster="loading.png"
-            seamless-poster
-            shadow-intensity="1"
-            camera-controls
-            style="background-color: #4A525A;"
-            id="main"
-            camera-target="0m 0m 0m"
-          >
-          </model-viewer>
+  <div class="container-fluid g-0" style="margin: 0%;" id="model">
+    <!-- Use it like any other HTML element -->
+    <model-viewer alt="An Artistic Representation of a Heart" src="Models/convert-heart.glb" ar
+      ar-modes="webxr scene-viewer quick-look" environment-image="" poster="" seamless-poster shadow-intensity="1"
+      camera-controls style="background-color: #4A525A;" id="main" camera-target="0m 0m 0m">
 
-          
-        </div>
-  </body>
-  <script type="module">
+      <button class="label" slot="hotspot-spot" data-position="-0.70 1.2 0.1" data-normal="-0.73 0.05 0.69" id="button-model">
+        <div id="annotation">Superior Vena Cava</div>
+      </button>
 
-    //disable right click to stop annoying popup when panning
-    //document.addEventListener('contextmenu', event => event.preventDefault());
+      <button class="label" slot="hotspot" data-position="0.5 0 0" data-normal="0 0 0" id="button-model">
+        <div id="annotation">Another Part - WIP </div>
+      </button>
+
+    </model-viewer>
+  </div>
+</body>
 
 
 
+<script type="module">
 
-    const modelViewer = document.querySelector('#main');
-    const tapDistance = 2;
-    let panning = false;
-    let panX, panY;
-    let startX, startY;
-    let lastX, lastY;
-    let metersPerPixel;
-  
-    const startPan = () => {
-      const orbit = modelViewer.getCameraOrbit();
-      const {theta, phi, radius} = orbit;
-      const psi = theta - modelViewer.turntableRotation;
-      metersPerPixel = 0.75 * radius / modelViewer.getBoundingClientRect().height;
-      panX = [-Math.cos(psi), 0, Math.sin(psi)];
-      panY = [
-        -Math.cos(phi) * Math.sin(psi),
-        Math.sin(phi),
-        -Math.cos(phi) * Math.cos(psi)
-      ];
-      modelViewer.interactionPrompt = 'none';
-    };
-  
-    const movePan = (thisX, thisY) => {
-      const dx = (thisX - lastX) * metersPerPixel;
-      const dy = (thisY - lastY) * metersPerPixel;
-      lastX = thisX;
-      lastY = thisY;
-  
-      const target = modelViewer.getCameraTarget();
-      target.x += dx * panX[0] + dy * panY[0];
-      target.y += dx * panX[1] + dy * panY[1];
-      target.z += dx * panX[2] + dy * panY[2];
-      modelViewer.cameraTarget = `${target.x}m ${target.y}m ${target.z}m`;
-  
-      // This pauses turntable rotation
-      modelViewer.dispatchEvent(new CustomEvent(
-            'camera-change', {detail: {source: 'user-interaction'}}));
-    };
-  
-    const recenter = (pointer) => {
-      panning = false;
-      if (Math.abs(pointer.clientX - startX) > tapDistance ||
-          Math.abs(pointer.clientY - startY) > tapDistance)
-        return;
-      const hit = modelViewer.positionAndNormalFromPoint(pointer.clientX, pointer.clientY);
-      modelViewer.cameraTarget =
-          hit == null ? 'auto auto auto' : hit.position.toString();
-    };
-  
-    modelViewer.addEventListener('mousedown', (event) => {
-      startX = event.clientX;
-      startY = event.clientY;
-      panning = event.button === 2 || event.ctrlKey || event.metaKey ||
-          event.shiftKey;
-      if (!panning)
-        return;
-  
-      lastX = startX;
-      lastY = startY;
-      startPan();
-      event.stopPropagation();
-    }, true);
-  
-    modelViewer.addEventListener('touchstart', (event) => {
-      const {targetTouches, touches} = event;
-      startX = targetTouches[0].clientX;
-      startY = targetTouches[0].clientY;
-      panning = targetTouches.length === 2 && targetTouches.length === touches.length;
-      if (!panning)
-        return;
-  
-      lastX = 0.5 * (targetTouches[0].clientX + targetTouches[1].clientX);
-      lastY = 0.5 * (targetTouches[0].clientY + targetTouches[1].clientY);
-      startPan();
-    }, true);
-  
-    self.addEventListener('mousemove', (event) => {
-      if (!panning)
-        return;
-  
-      movePan(event.clientX, event.clientY);
-      event.stopPropagation();
-    }, true);
-  
-    modelViewer.addEventListener('touchmove', (event) => {
-      if (!panning || event.targetTouches.length !== 2)
-        return;
-  
-      const {targetTouches} = event;
-      const thisX = 0.5 * (targetTouches[0].clientX + targetTouches[1].clientX);
-      const thisY = 0.5 * (targetTouches[0].clientY + targetTouches[1].clientY);
-      movePan(thisX, thisY);
-    }, true);
-  
-    self.addEventListener('mouseup', (event) => {
-      recenter(event);
-    }, true);
-    
-    modelViewer.addEventListener('touchend', (event) => {
-      if (event.targetTouches.length === 0) {
-        recenter(event.changedTouches[0]);
-  
-        if (event.cancelable) {
-          event.preventDefault();
-        }
+
+
+  //Panning Code from Google Module Viewer Documentation 
+
+  const modelViewer = document.querySelector('#main');
+  const tapDistance = 2;
+  let panning = false;
+  let panX, panY;
+  let startX, startY;
+  let lastX, lastY;
+  let metersPerPixel;
+
+  const startPan = () => {
+    const orbit = modelViewer.getCameraOrbit();
+    const { theta, phi, radius } = orbit;
+    const psi = theta - modelViewer.turntableRotation;
+    metersPerPixel = 0.75 * radius / modelViewer.getBoundingClientRect().height;
+    panX = [-Math.cos(psi), 0, Math.sin(psi)];
+    panY = [
+      -Math.cos(phi) * Math.sin(psi),
+      Math.sin(phi),
+      -Math.cos(phi) * Math.cos(psi)
+    ];
+    modelViewer.interactionPrompt = 'none';
+  };
+
+  const movePan = (thisX, thisY) => {
+    const dx = (thisX - lastX) * metersPerPixel;
+    const dy = (thisY - lastY) * metersPerPixel;
+    lastX = thisX;
+    lastY = thisY;
+
+    const target = modelViewer.getCameraTarget();
+    target.x += dx * panX[0] + dy * panY[0];
+    target.y += dx * panX[1] + dy * panY[1];
+    target.z += dx * panX[2] + dy * panY[2];
+    modelViewer.cameraTarget = `${target.x}m ${target.y}m ${target.z}m`;
+
+    // This pauses turntable rotation
+    modelViewer.dispatchEvent(new CustomEvent(
+      'camera-change', { detail: { source: 'user-interaction' } }));
+  };
+
+  const recenter = (pointer) => {
+    panning = false;
+    if (Math.abs(pointer.clientX - startX) > tapDistance ||
+      Math.abs(pointer.clientY - startY) > tapDistance)
+      return;
+    const hit = modelViewer.positionAndNormalFromPoint(pointer.clientX, pointer.clientY);
+    modelViewer.cameraTarget =
+      hit == null ? 'auto auto auto' : hit.position.toString();
+  };
+
+  modelViewer.addEventListener('mousedown', (event) => {
+    startX = event.clientX;
+    startY = event.clientY;
+    panning = event.button === 2 || event.ctrlKey || event.metaKey ||
+      event.shiftKey;
+    if (!panning)
+      return;
+
+    lastX = startX;
+    lastY = startY;
+    startPan();
+    event.stopPropagation();
+  }, true);
+
+  modelViewer.addEventListener('touchstart', (event) => {
+    const { targetTouches, touches } = event;
+    startX = targetTouches[0].clientX;
+    startY = targetTouches[0].clientY;
+    panning = targetTouches.length === 2 && targetTouches.length === touches.length;
+    if (!panning)
+      return;
+
+    lastX = 0.5 * (targetTouches[0].clientX + targetTouches[1].clientX);
+    lastY = 0.5 * (targetTouches[0].clientY + targetTouches[1].clientY);
+    startPan();
+  }, true);
+
+  self.addEventListener('mousemove', (event) => {
+    if (!panning)
+      return;
+
+    movePan(event.clientX, event.clientY);
+    event.stopPropagation();
+  }, true);
+
+  modelViewer.addEventListener('touchmove', (event) => {
+    if (!panning || event.targetTouches.length !== 2)
+      return;
+
+    const { targetTouches } = event;
+    const thisX = 0.5 * (targetTouches[0].clientX + targetTouches[1].clientX);
+    const thisY = 0.5 * (targetTouches[0].clientY + targetTouches[1].clientY);
+    movePan(thisX, thisY);
+  }, true);
+
+  self.addEventListener('mouseup', (event) => {
+    recenter(event);
+  }, true);
+
+  modelViewer.addEventListener('touchend', (event) => {
+    if (event.targetTouches.length === 0) {
+      recenter(event.changedTouches[0]);
+
+      if (event.cancelable) {
+        event.preventDefault();
       }
-    }, true);
-  </script>
+    }
+  }, true);
+
+</script>
+
 </html>
-
-
