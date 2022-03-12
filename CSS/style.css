@@ -1,0 +1,102 @@
+body {
+    background-color: #272727;
+    overflow-x: hidden;
+    margin-top: auto;
+    font-family: 'Lexend', sans-serif;
+}
+
+model-viewer {
+
+    height: 100vh; 
+    width:  100vw; 
+    
+}
+
+.card {
+    margin: 2%;
+    height: auto;
+    background-color: #4A525A;;
+    
+
+}
+
+.collapse {
+    overflow: auto;
+}
+
+p{
+    color: #F7F0F0;
+    font-size: 0.5em;
+    font-family: 'Lexend', sans-serif;
+}
+
+h1{
+    color: #1DD3B0;
+    margin: 2%;
+    font-family: 'Lexend', sans-serif;
+    text-align: left;
+}
+
+h5{
+    color: #5299D3;
+    margin: 2%;
+    text-align: left;
+}
+
+button{
+    margin: 5px;
+}
+
+#options-menu{
+    background-color: #24272B;
+}
+
+#menu{
+    z-index: 1;
+    position: fixed;
+    top: 90%;
+    left: 1%;
+    right: 99%;
+    bottom: 10%;
+
+    width: 50px;
+    height: 50px;
+    padding: 7px 10px;
+    border-radius: 25px;
+    text-align: center;
+    
+}
+
+/* This keeps child nodes hidden while the element loads */
+:not(:defined) > * {
+    display: none;
+  }
+
+#annotation{
+    position: absolute;
+    transform: translate(10px, 10px);
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #F7F0F0;
+}
+
+#button-model{
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    border: none;
+    background-color: blue;
+    box-sizing: border-box;
+  }
+
+button[slot="hotspot-spot"]{
+    --min-hotspot-opacity: 0;
+    background-color: #5299D3;
+  }
+  
+  .hide{
+    display: none;
+  }
+
+
