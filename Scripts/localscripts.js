@@ -5,6 +5,8 @@
   let labelVisibility = true;
   var labels = document.getElementsByClassName("label");
   var model = document.getElementById("model");
+  var ARview = document.getElementById("ARview");
+
 
   var labelToggle =  document.getElementById("model");
 
@@ -16,11 +18,22 @@
     var switchery = new Switchery(html, { color: '#5299D3', jackColor: '#1DD3B0', secondaryColor: '#272727' });
   });
 
+  var changeCheckbox = document.getElementById("labelTick");
 
+  if(!changeCheckbox.checked)
+  {
+    show();
+  }
+
+  changeCheckbox.onchange = function() {
+  show();
+  };
 
   function show()
   {
-    if(labelVisibility == true)
+    var tickBox = document.getElementById('labelTick');
+    
+    if(labelVisibility == true && tickBox.checked == 0)
     {
       for(var i = 0; i < labels.length; i++)
       {
@@ -42,7 +55,7 @@
 
   function showModel()
   {
-    if (model.style.display === "none") 
+    if (model.style.display === "none" && ARview.style.display == "none") 
     {
       model.style.display = "block";
     } 
@@ -51,5 +64,22 @@
       model.style.display = "none";
     }
   }
+
+  function showAR()
+  {
+    if (ARview.style.display === "none") 
+    {
+      ARview.style.display = "block";
+
+    } 
+    else 
+    {
+      ARview.style.display = "none";
+    }
+  }
+
+  showAR();
+
+
 
 
