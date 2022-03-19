@@ -15,7 +15,9 @@ model-viewer {
 .card {
     margin: 2%;
     height: auto;
-    background-color: #4A525A;;
+    background-color: #4A525A;
+
+    margin-left: 5%;
     
 
 }
