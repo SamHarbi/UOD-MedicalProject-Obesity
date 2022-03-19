@@ -94,6 +94,12 @@
         </div>
       </div>
     </div>
+    <div class="card">
+      <div class="card-body">
+        <p class="lead">Quiz</p>
+        <input type="range" min="1" max="100" value="35" class="slider" style="width: 25%;" oninput="switchModel(this.value);">
+      </div>
+    </div>
   </div>
   </div>
   </div>
@@ -103,6 +109,8 @@
     <model-viewer alt="An Artistic Representation of a Heart" src="Models/Obese_heart_anim_final.glb" ar
       ar-modes="webxr scene-viewer quick-look" environment-image="" poster="" seamless-poster shadow-intensity="1"
       camera-controls style="background-color: #4A525A;" id="main" camera-target="0m 0m 0m" >
+
+      <button slot="ar-button" style="top: 70%; left: 1%; right: 99%;"></button>
 
       <button class="label" slot="hotspot-spot" data-position="-0.70 1.2 0.1" data-normal="-0.73 0.05 0.69" id="button-model">
         <div id="annotation">Superior Vena Cava</div>
