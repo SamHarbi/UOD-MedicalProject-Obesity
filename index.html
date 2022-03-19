@@ -3,6 +3,7 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <!-- Import model-viewer component -->
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
   </script>
@@ -45,13 +46,18 @@
 
 <body>
 
-  <a class="btn btn-primary" id="menu" data-bs-toggle="collapse" data-bs-placement="top" href="#collapseExample"
-    role="button" aria-expanded="false" aria-controls="collapseExample" onclick="showModel()">
+  <a class="btn btn-primary border-0" id="menu" data-bs-toggle="collapse" data-bs-placement="top" href="#collapse"
+    role="button" aria-expanded="false" aria-controls="collapse" onclick="showModel()">
+    <h1><i class="bi bi-list"></i></h1>
+  </a>
 
+  <a class="btn btn-primary border-0" id="menu" data-bs-placement="top" 
+    role="button" onclick="animationControl()" style="top: 70%;">
+    <h1><i class="bi bi-play" id="controlButton"></i></h1>
   </a>
 
 
-  <div class="collapse" id="collapseExample">
+  <div class="collapse" id="collapse">
 
     <div class="card mb-3">
       <div class="row g-0">
@@ -84,7 +90,7 @@
       <div class="card">
         <div class="card-body">
           <p class="lead">Disease Intensity</p>
-          <input type="range" min="1" max="100" value="35" class="slider">
+          <input type="range" min="1" max="100" value="35" class="slider" style="width: 25%;" oninput="switchModel(this.value);">
         </div>
       </div>
     </div>
@@ -94,9 +100,9 @@
 
   <div class="container-fluid g-0" style="margin: 0%;" id="model">
     <!-- 3D Model View -->
-    <model-viewer alt="An Artistic Representation of a Heart" src="Models/convert-heart.glb" ar
+    <model-viewer alt="An Artistic Representation of a Heart" src="Models/Obese_heart_anim_final.glb" ar
       ar-modes="webxr scene-viewer quick-look" environment-image="" poster="" seamless-poster shadow-intensity="1"
-      camera-controls style="background-color: #4A525A;" id="main" camera-target="0m 0m 0m">
+      camera-controls style="background-color: #4A525A;" id="main" camera-target="0m 0m 0m" >
 
       <button class="label" slot="hotspot-spot" data-position="-0.70 1.2 0.1" data-normal="-0.73 0.05 0.69" id="button-model">
         <div id="annotation">Superior Vena Cava</div>
