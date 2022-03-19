@@ -7,10 +7,7 @@
   var model = document.getElementById("model");
   var ARview = document.getElementById("ARview");
 
-
   var labelToggle =  document.getElementById("model");
-
-
 
   //Required by Switchery - Setup each tickbox
   var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
@@ -75,6 +72,38 @@
     else 
     {
       ARview.style.display = "none";
+    }
+  }
+
+  function animationControl()
+  {
+    var model = document.getElementById("main");
+    var controlButton = document.getElementById("controlButton")
+
+    if(model.paused == true)
+    {
+      model.play();
+      controlButton.classList.remove('bi-play');
+      controlButton.classList.add('bi-pause');
+    }
+    else
+    {
+      model.pause();
+      controlButton.classList.remove('bi-pause');
+      controlButton.classList.add('bi-play');
+    }
+  }
+
+  function switchModel(id)
+  {
+    var model = document.getElementById("main");
+    if(id <= 50)
+    {
+      model.src = "../Models/Normal_heart_anim.glb"
+    }
+    if(id > 50)
+    {
+      model.src = "../Models/Obese_heart_anim_final.glb"
     }
   }
 
