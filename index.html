@@ -18,12 +18,9 @@
   </script>
 
   <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet"> 
 
   <!-- Switchery Import -->
   <link rel="stylesheet" href="Switchery-0.8.2/switchery.css" />
@@ -33,33 +30,31 @@
   <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
   <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 
-  <!--Icons-->
+  <!--Icons--> 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
   <!-- Import local CSS-->
   <link rel="stylesheet" href="CSS/style.css" />
   
-  <!-- Import local Javascript-->
-  <script src="Scripts/localscripts.js" async></script>
 
 </head>
 
-<body>
+<body id="body">
 
-  <a class="btn btn-primary border-0" id="menu" data-bs-toggle="collapse" data-bs-placement="top" href="#collapse"
+  <a id="menu" data-bs-toggle="collapse" data-bs-placement="top" href="#collapse"
     role="button" aria-expanded="false" aria-controls="collapse" onclick="showModel()">
-    <h1><i class="bi bi-list"></i></h1>
+    <h2><i class="bi bi-list"></i></h2>
   </a>
 
-  <a class="btn btn-primary border-0" id="menu" data-bs-placement="top" 
-    role="button" onclick="animationControl()" style="top: 70%;">
-    <h1><i class="bi bi-play" id="controlButton"></i></h1>
+  <a class="play" id="menu" data-bs-placement="top" 
+    role="button" onclick="animationControl()" style="top: 70%; background-image: 'Icons/play.svg'">
+    <h2><i class="bi bi-play" id="controlButton"></i></h2>
   </a>
 
 
   <div class="collapse" id="collapse">
 
-    <div class="card mb-3">
+    <div class="card mb-3" >
       <div class="row g-0">
         <div class="col-md-4">
           <img src="..." class="img-fluid rounded-start" alt="...">
@@ -76,28 +71,52 @@
       </div>
     </div>
 
-    <div class="card-group" style="margin-bottom: 5%;">
+    <div class="card-group" >
       <div class="card">
         <div class="card-body">
           <p class="lead">Control Panel</p>
           <h5><input id="labelTick" type="checkbox" class="js-switch" checked /> Labels </h5>
           <h5><input type="checkbox" class="js-switch" checked /> Descriptions </h5>
           <h5><input type="checkbox" class="js-switch" checked /> Quiz </h5>
-          <button type="button" class="btn btn-primary" onclick="showAR();">Marker AR</button>
+          <button type="button" class="btn btn-primary" onclick="showAR();" data-bs-toggle="collapse" href="#collapse">Marker AR</button>
           <button type="button" class="btn btn-primary">Credits</button>
         </div>
       </div>
       <div class="card">
         <div class="card-body">
+          <p class="lead">Accessibility Options</p>
+          <p>Font Options</p>
+          <button class="btn btn-primary" id="Lex" onclick="changeAccess('0')">Lexend</button> 
+          <button class="btn btn-primary" id="Osa" onclick="changeAccess('2')">Times New Roman</button>
+          <button class="btn btn-primary" id="Ody" onclick="changeAccess('1')">Open-Dyslexia</button>
+          <p style="margin-top: 5%;">Font Sizing</p>
+          <button class="btn btn-primary" id="Res" onclick="changeAccess('3')">Small Size</button> 
+          <button class="btn btn-primary" id="Res" onclick="changeAccess('4')">Regular Size</button> 
+          <button class="btn btn-primary" id="Lsi" onclick="changeAccess('5')">Large Size</button> 
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
           <p class="lead">Disease Intensity</p>
-          <input type="range" min="1" max="100" value="35" class="slider" style="width: 25%;" oninput="switchModel(this.value);">
+          <p>Change this value to see the progressive change that Obesity has on the Heart and Lungs from a relatively healthy person, to someone who is more Obese. These changes
+            are based not on exact numbers or measurements but on typical changes that result from the Disease.
+          </p>
+          Healthy
+          <input id="ObesitySlide" type="range" min="1" max="100" value="35" class="slider" style="width: 35%; position: relative;" oninput="switchModel(this.value);">
+          <label for="ObesitySlide">Obese</label>
         </div>
       </div>
     </div>
-    <div class="card">
+    <div class="card" style="margin-bottom: 5%;">
       <div class="card-body">
         <p class="lead">Quiz</p>
-        <input type="range" min="1" max="100" value="35" class="slider" style="width: 25%;" oninput="switchModel(this.value);">
+        <p>This is a question, what do you think?</p>
+        <p><input type="checkbox" id="Q1">
+        <label for="Q1"> Answer 1 </label></p>
+        <p><input type="checkbox" id="Q2">
+        <label for="Q2"> Answer 2 </label></p>
+        <p><input type="checkbox" id="Q3">
+        <label for="Q3"> Answer 3 </label></p>
       </div>
     </div>
   </div>
@@ -109,8 +128,6 @@
     <model-viewer alt="An Artistic Representation of a Heart" src="Models/Obese_heart_anim_final.glb" ar
       ar-modes="webxr scene-viewer quick-look" environment-image="" poster="" seamless-poster shadow-intensity="1"
       camera-controls style="background-color: #4A525A;" id="main" camera-target="0m 0m 0m" >
-
-      <button slot="ar-button" style="top: 70%; left: 1%; right: 99%;"></button>
 
       <button class="label" slot="hotspot-spot" data-position="-0.70 1.2 0.1" data-normal="-0.73 0.05 0.69" id="button-model">
         <div id="annotation">Superior Vena Cava</div>
@@ -248,3 +265,6 @@
 </script>
 
 </html>
+
+<!-- Import local Javascript-->
+<script src="Scripts/localscripts.js" async></script>

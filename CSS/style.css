@@ -1,8 +1,36 @@
+@font-face {
+    font-family: 'Open-Dyslexia';
+    src: url('Fonts/OpenDyslexic-Regular.otf');  
+}
+
+:root {
+    --bs-blue: #5299D3;
+
+    --main-font: 'Lexend', sans-serif;
+    --main-spac: auto;
+    --main-line-height: auto;
+
+    --Dys-font: 'Open-Dyslexia', sans-serif;
+    --Dys-spac: 250%;
+    --Dys-line-height: 200%;
+
+    --Ser-font: "Times New Roman", serif;
+    --main-spac: auto;
+    --main-line-height: auto;
+
+    --main-size: auto;
+    --large-size: 180%
+}
+
 body {
     background-color: #272727;
     overflow-x: hidden;
     margin-top: auto;
-    font-family: 'Lexend', sans-serif;
+
+    font-family: var(--main-font);
+    word-spacing: var(--main-spac);
+    line-height: var(--main-line-height);
+    font-size: var(--main-size);
 }
 
 model-viewer {
@@ -12,13 +40,12 @@ model-viewer {
     
 }
 
+
 .card {
     margin: 2%;
     height: auto;
     background-color: #4A525A;
-
-    margin-left: 5%;
-    
+    margin-left: 15%;
 
 }
 
@@ -33,16 +60,23 @@ model-viewer {
     overflow: auto;
 }
 
+.lead {
+    color: #1DD3B0;
+}
+
 p{
     color: #F7F0F0;
-    font-size: 0.5em;
-    font-family: 'Lexend', sans-serif;
+    
 }
 
 h1{
     color: #1DD3B0;
-    font-family: 'Lexend', sans-serif;
     text-align: left;
+}
+
+h2{
+    color: #1DD3B0;
+    text-align: center;
 }
 
 h5{
@@ -76,10 +110,6 @@ button{
     background-color: #24272B;
     padding: 3px 5px;
     
-}
-
-#controlButton {
-    top: 70%;
 }
 
 
@@ -119,6 +149,10 @@ iframe
 {
     width: 100%;
     height: 100vh;
+}
+
+.slider{
+    color: #1DD3B0;
 }
 
 
