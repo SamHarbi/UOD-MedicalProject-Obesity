@@ -89,6 +89,34 @@ button{
     margin: 5px;
 }
 
+#des-card{
+    z-index: 10;
+    position: fixed;
+    display: none;
+    
+    margin-right: 80%;
+    margin-left: 5%;
+    width: 350px;
+    height: 250px;
+    
+
+    background-color: #24272B;
+}
+
+#DS-card{
+    z-index: 10;
+    position: fixed;
+    display: none;
+    
+    margin-right: 80%;
+    margin-left: 2%;
+    width: 450px;
+    height: 320px;
+    
+
+    background-color: #24272B;
+}
+
 #options-menu{
     background-color: #24272B;
 }

@@ -2,7 +2,16 @@
 <html>
 
 <head>
+  <!--Meta Information Tags-->
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <title>Obesity Visualiser</title>
+  <meta name="author" content="Sameer Al Harbi">
+  <meta name="description" content="This Web App aims to help medical students better understand and visualise through AR the 
+  anatomical changes that Obesity causes in the heart and lungs">
+  <link rel="icon" href="Icons/icon.png" type="image/x-icon">
+
+  <!--Imports-->
 
   <!-- Import model-viewer component -->
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
@@ -26,10 +35,6 @@
   <link rel="stylesheet" href="Switchery-0.8.2/switchery.css" />
   <script src="Switchery-0.8.2/switchery.js"></script>
 
-  <!--AR.js-->
-  <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-
   <!--Icons--> 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
@@ -42,12 +47,12 @@
 <body id="body">
 
   <a id="menu" data-bs-toggle="collapse" data-bs-placement="top" href="#collapse"
-    role="button" aria-expanded="false" aria-controls="collapse" onclick="showModel()">
+    role="button" aria-expanded="false" aria-controls="collapse" onclick="showModel()" alt="Hamburger button, opens a menu of options">
     <h2><i class="bi bi-list"></i></h2>
   </a>
 
   <a class="play" id="menu" data-bs-placement="top" 
-    role="button" onclick="animationControl()" style="top: 70%; background-image: 'Icons/play.svg'">
+    role="button" onclick="animationControl()" style="top: 70%; background-image: 'Icons/play.svg'" alt="Play / Pause button">
     <h2><i class="bi bi-play" id="controlButton"></i></h2>
   </a>
 
@@ -57,7 +62,7 @@
     <div class="card mb-3" >
       <div class="row g-0">
         <div class="col-md-4">
-          <img src="..." class="img-fluid rounded-start" alt="...">
+          <img src="Images/VA_Sticker.2 (2).jpg" width="50%" style="margin-left: auto; margin-right: auto;" class="img-fluid rounded-start" alt="Simple Heart Logo">
         </div>
         <div class="col-md-8">
           <div class="card-body">
@@ -66,6 +71,7 @@
               changes that a person with obesity would have compared
               to a healthy person.
             </h5>
+            <p><!-- Credits: Sameer Al Harbi (Programming) | Lipin Murali Murali (Animations) | Melissa Bititci (Modelling and Medical Expertise) --></p>
           </div>
         </div>
       </div>
@@ -76,10 +82,10 @@
         <div class="card-body">
           <p class="lead">Control Panel</p>
           <h5><input id="labelTick" type="checkbox" class="js-switch" checked /> Labels </h5>
-          <h5><input type="checkbox" class="js-switch" checked /> Descriptions </h5>
-          <h5><input type="checkbox" class="js-switch" checked /> Quiz </h5>
+          <h5><input type="checkbox" class="js-switch" autocomplete="off"> Descriptions </h5>
+          <h5><input type="checkbox" class="js-switch" autocomplete="off"> Lungs Visible </h5>
           <button type="button" class="btn btn-primary" onclick="showAR();" data-bs-toggle="collapse" href="#collapse">Marker AR</button>
-          <button type="button" class="btn btn-primary">Credits</button>
+          <button type="button" class="btn btn-primary">Quiz</button>
         </div>
       </div>
       <div class="card">
@@ -101,9 +107,10 @@
           <p>Change this value to see the progressive change that Obesity has on the Heart and Lungs from a relatively healthy person, to someone who is more Obese. These changes
             are based not on exact numbers or measurements but on typical changes that result from the Disease.
           </p>
-          Healthy
+          <label for="ObesitySlide"><p>Healthy</p></label>
           <input id="ObesitySlide" type="range" min="1" max="100" value="35" class="slider" style="width: 35%; position: relative;" oninput="switchModel(this.value);">
-          <label for="ObesitySlide">Obese</label>
+          <label for="ObesitySlide"><p>Obese</p></label>
+          <p><input type="checkbox" class="js-switch" id="DSTick" autocomplete="off"> Pin to Model View </p>
         </div>
       </div>
     </div>
@@ -117,17 +124,53 @@
         <label for="Q2"> Answer 2 </label></p>
         <p><input type="checkbox" id="Q3">
         <label for="Q3"> Answer 3 </label></p>
+        <button type="button" class="btn btn-primary">Submit</button>
       </div>
     </div>
   </div>
   </div>
   </div>
 
+  
+
   <div class="container-fluid g-0" style="margin: 0%;" id="model">
+    <div class="card" id="des-card">
+      <div class="card-body">
+        <p>This is where extended descriptions of selected points will be shown, you can hide this panel by turning off
+          descriptions in the <button onclick="showModelSim();">Control panel.</button> by clicking the 'Hamburger' Icon in the bottom left of the screen
+        </p>
+      </div>
+    </div>
+
+    <div class="container-fluid g-0" style="margin: 0%;" id="pinnedDS">
+      <div class="card" id="DS-card">
+        <div class="card-body">
+          <p class="lead">Disease Intensity</p>
+          <p>Change this value to see the progressive change that Obesity has on the Heart and Lungs from a relatively healthy person, to someone who is more Obese. These changes
+            are based not on exact numbers or measurements but on typical changes that result from the Disease.
+          </p>
+          <label for="ObesitySlide"><p>Healthy</p></label>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-secondary" onclick="switchModel(1);">1</button>
+            <button type="button" class="btn btn-secondary" onclick="switchModel(20);">2</button>
+            <button type="button" class="btn btn-secondary" onclick="switchModel(30);">3</button>
+            <button type="button" class="btn btn-secondary" onclick="switchModel(40);">4</button>
+            <button type="button" class="btn btn-secondary" onclick="switchModel(50);">5</button>
+            <button type="button" class="btn btn-secondary" onclick="switchModel(60);">6</button>
+            <button type="button" class="btn btn-secondary" onclick="switchModel(70);">7</button>
+            <button type="button" class="btn btn-secondary" onclick="switchModel(80);">8</button>
+            <button type="button" class="btn btn-secondary" onclick="switchModel(90);">9</button>
+            <button type="button" class="btn btn-secondary" onclick="switchModel(100);">10</button>
+          </div>
+          <br>
+          <label for="ObesitySlide" style="margin-left: 90%;"><p>Obese</p></label>
+        </div>
+      </div>
+
     <!-- 3D Model View -->
     <model-viewer alt="An Artistic Representation of a Heart" src="Models/Obese_heart_anim_final.glb" ar
       ar-modes="webxr scene-viewer quick-look" environment-image="" poster="" seamless-poster shadow-intensity="1"
-      camera-controls style="background-color: #4A525A;" id="main" camera-target="0m 0m 0m" >
+      camera-controls style="background-color: #4A525A;" id="main" camera-target="0m 0m 0m" camera-controls enable-pan>
 
       <button class="label" slot="hotspot-spot" data-position="-0.70 1.2 0.1" data-normal="-0.73 0.05 0.69" id="button-model">
         <div id="annotation">Superior Vena Cava</div>
@@ -144,127 +187,13 @@
     <iframe src="MarkerARPage/MarkerARPage.html" title="AR Camera View"></iframe>
   </div>
 
+
 </body>
 
 
-
-<script type="module">
-
-
-
-  //Panning Code from Google Module Viewer Documentation 
-
-  const modelViewer = document.querySelector('#main');
-  const tapDistance = 2;
-  let panning = false;
-  let panX, panY;
-  let startX, startY;
-  let lastX, lastY;
-  let metersPerPixel;
-
-  const startPan = () => {
-    const orbit = modelViewer.getCameraOrbit();
-    const { theta, phi, radius } = orbit;
-    const psi = theta - modelViewer.turntableRotation;
-    metersPerPixel = 0.75 * radius / modelViewer.getBoundingClientRect().height;
-    panX = [-Math.cos(psi), 0, Math.sin(psi)];
-    panY = [
-      -Math.cos(phi) * Math.sin(psi),
-      Math.sin(phi),
-      -Math.cos(phi) * Math.cos(psi)
-    ];
-    modelViewer.interactionPrompt = 'none';
-  };
-
-  const movePan = (thisX, thisY) => {
-    const dx = (thisX - lastX) * metersPerPixel;
-    const dy = (thisY - lastY) * metersPerPixel;
-    lastX = thisX;
-    lastY = thisY;
-
-    const target = modelViewer.getCameraTarget();
-    target.x += dx * panX[0] + dy * panY[0];
-    target.y += dx * panX[1] + dy * panY[1];
-    target.z += dx * panX[2] + dy * panY[2];
-    modelViewer.cameraTarget = `${target.x}m ${target.y}m ${target.z}m`;
-
-    // This pauses turntable rotation
-    modelViewer.dispatchEvent(new CustomEvent(
-      'camera-change', { detail: { source: 'user-interaction' } }));
-  };
-
-  const recenter = (pointer) => {
-    panning = false;
-    if (Math.abs(pointer.clientX - startX) > tapDistance ||
-      Math.abs(pointer.clientY - startY) > tapDistance)
-      return;
-    const hit = modelViewer.positionAndNormalFromPoint(pointer.clientX, pointer.clientY);
-    modelViewer.cameraTarget =
-      hit == null ? 'auto auto auto' : hit.position.toString();
-  };
-
-  modelViewer.addEventListener('mousedown', (event) => {
-    startX = event.clientX;
-    startY = event.clientY;
-    panning = event.button === 2 || event.ctrlKey || event.metaKey ||
-      event.shiftKey;
-    if (!panning)
-      return;
-
-    lastX = startX;
-    lastY = startY;
-    startPan();
-    event.stopPropagation();
-  }, true);
-
-  modelViewer.addEventListener('touchstart', (event) => {
-    const { targetTouches, touches } = event;
-    startX = targetTouches[0].clientX;
-    startY = targetTouches[0].clientY;
-    panning = targetTouches.length === 2 && targetTouches.length === touches.length;
-    if (!panning)
-      return;
-
-    lastX = 0.5 * (targetTouches[0].clientX + targetTouches[1].clientX);
-    lastY = 0.5 * (targetTouches[0].clientY + targetTouches[1].clientY);
-    startPan();
-  }, true);
-
-  self.addEventListener('mousemove', (event) => {
-    if (!panning)
-      return;
-
-    movePan(event.clientX, event.clientY);
-    event.stopPropagation();
-  }, true);
-
-  modelViewer.addEventListener('touchmove', (event) => {
-    if (!panning || event.targetTouches.length !== 2)
-      return;
-
-    const { targetTouches } = event;
-    const thisX = 0.5 * (targetTouches[0].clientX + targetTouches[1].clientX);
-    const thisY = 0.5 * (targetTouches[0].clientY + targetTouches[1].clientY);
-    movePan(thisX, thisY);
-  }, true);
-
-  self.addEventListener('mouseup', (event) => {
-    recenter(event);
-  }, true);
-
-  modelViewer.addEventListener('touchend', (event) => {
-    if (event.targetTouches.length === 0) {
-      recenter(event.changedTouches[0]);
-
-      if (event.cancelable) {
-        event.preventDefault();
-      }
-    }
-  }, true);
-
-</script>
 
 </html>
 
 <!-- Import local Javascript-->
 <script src="Scripts/localscripts.js" async></script>
+<script src="Scripts/Panning.js" async></script>

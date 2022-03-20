@@ -20,6 +20,9 @@
   });
 
   var changeCheckbox = document.getElementById("labelTick");
+  var DSTick = document.getElementById("DSTick");
+  var pinnedDS = document.getElementById("DS-card");
+  var pinnedCount = 0;
 
   if(!changeCheckbox.checked)
   {
@@ -29,6 +32,26 @@
   changeCheckbox.onchange = function() {
   show();
   };
+
+  DSTick.onchange = function() {
+    pinDS();
+    
+  };
+
+  //No idea why but I cannot read pinnedCount CSS for some reason, this seems like the only way 
+  function pinDS()
+  {
+    if(pinnedCount == 0)
+    {
+      pinnedCount = 1;
+      pinnedDS.style.setProperty('display', 'block');
+    }
+    else
+    {
+      pinnedCount = 0;
+      pinnedDS.style.setProperty('display', 'none');
+    }
+  }
 
   function changeAccess(id)
   {
@@ -65,6 +88,7 @@
   function show()
   {
     var tickBox = document.getElementById('labelTick');
+    print();
     
     if(labelVisibility == true && tickBox.checked == 0)
     {
@@ -96,6 +120,11 @@
     {
       model.style.display = "none";
     }
+  }
+
+  function showModelSim()
+  {
+    document.getElementById("menu").click();
   }
 
   function showAR()
@@ -134,14 +163,49 @@
   function switchModel(id)
   {
     var model = document.getElementById("main");
-    if(id <= 50)
+    if(id < 10)
     {
-      model.src = "../Models/Normal_heart_anim.glb"
+      model.src = "../Models/Level1/level_1_anim.glb"
     }
-    if(id > 50)
+    if(id <= 20 && id > 10)
     {
-      model.src = "../Models/Obese_heart_anim_final.glb"
+      model.src = "../Models/Level2/level_2_anim.glb"
     }
+    if(id <= 30 && id > 20)
+    {
+      model.src = "../Models/Level3/level_3_anim.glb"
+    }
+    if(id <= 40 && id > 30)
+    {
+      model.src = "../Models/Level4/level_4_anim.glb"
+    }
+    if(id <= 50 && id > 40)
+    {
+      model.src = "../Models/Level5/level_5_anim.glb"
+    }
+    if(id <= 60 && id > 50)
+    {
+      model.src = "../Models/Level6/level_6_anim.glb"
+    }
+    if(id <= 70 && id > 60)
+    {
+      model.src = "../Models/Level7/level_7_anim.glb"
+    }
+    if(id <= 80 && id > 70)
+    {
+      model.src = "../Models/Level8/level_8_anim.glb"
+    }
+    if(id <= 90 && id > 80)
+    {
+      model.src = "../Models/Level9/level_9_anim.glb"
+    }
+    if(id <= 100 && id > 90)
+    {
+      model.src = "../Models/Level10/level_10_anim.glb"
+    }
+
+    console.log(id);
+
   }
 
   showAR();
