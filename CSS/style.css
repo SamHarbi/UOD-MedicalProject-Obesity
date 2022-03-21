@@ -112,6 +112,8 @@ button{
     margin-left: 2%;
     width: 450px;
     height: 60%;
+
+    overflow-y: auto;
     
 
     background-color: #24272B;
@@ -182,5 +184,10 @@ iframe
 .slider{
     color: #1DD3B0;
 }
+
+button{
+    --min-hotspot-opacity: 0;
+  }
+
 
 

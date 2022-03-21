@@ -1,6 +1,6 @@
 
   //disable right click to stop annoying popup when panning
-  document.addEventListener('contextmenu', event => event.preventDefault());
+  //document.addEventListener('contextmenu', event => event.preventDefault());
 
   let labelVisibility = true;
   var labels = document.getElementsByClassName("label");
@@ -24,6 +24,8 @@
   var pinnedDS = document.getElementById("DS-card");
   var pinnedCount = 0;
   var currOSP = 99;
+
+  var shownModel = 0 // 0 for heart, 1 for lungs
 
   if(!changeCheckbox.checked)
   {
@@ -86,10 +88,17 @@
 
   }
 
+  function changeModels()
+  {
+    if(shownModel == 0)
+    {
+
+    }
+  }
+
   function show()
   {
     var tickBox = document.getElementById('labelTick');
-    print();
     
     if(labelVisibility == true && tickBox.checked == 0)
     {
@@ -148,9 +157,11 @@
     var controlButton = document.getElementById("controlButton")
     var OSP = document.getElementById("ObesitySlidePin").value;
 
-    model.src = "Models/Level" + OSP + "/level_" + OSP + "_anim.glb"
+    if(pinnedDS.style.display == "block")
+    {
+      model.src = "Models/Level" + OSP + "/level_" + OSP + "_anim.glb"
+    }
 
-    
     if(model.paused == true)
     {
       model.play();
@@ -232,10 +243,10 @@
 
   showAR();
 
-if(!model.canActivateAR)
-  {
-    alert("Error! No AR Support on device");
-  }
+  //if(!model.canActivateAR)
+ // {
+   // alert("Error! No AR Support on device");
+  //}
 
 
 

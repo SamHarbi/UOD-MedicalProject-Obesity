@@ -84,9 +84,8 @@
           <p>Please note that features labelled as experimental may not work as well</p>
           <h5><input id="labelTick" type="checkbox" class="js-switch" checked /> Labels </h5>
           <h5><input type="checkbox" class="js-switch" autocomplete="off" disabled> Descriptions - Coming Soon </h5>
-          <h5><input type="checkbox" class="js-switch" autocomplete="off" disabled> Lungs Visible - Coming Soon </h5>
           <button type="button" class="btn btn-primary" onclick="showAR();" data-bs-toggle="collapse" href="#collapse">Marker AR</button>
-          <button type="button" class="btn btn-primary">Quiz</button>
+          <button type="button" class="btn btn-primary" onclick="changeModels()">Lungs View</button>
         </div>
       </div>
       <div class="card">
@@ -174,13 +173,69 @@
       ar-modes="webxr scene-viewer quick-look" environment-image="" poster="" seamless-poster shadow-intensity="1"
       camera-controls style="background-color: #4A525A;" id="main" camera-target="0m 0m 0m" camera-controls enable-pan>
 
-      <button class="label" slot="hotspot-spot" data-position="-0.70 1.2 0.1" data-normal="-0.73 0.05 0.69" id="button-model">
-        <div id="annotation">Superior Vena Cava</div>
-      </button>
+      
 
-      <button class="label" slot="hotspot" data-position="0.5 0 0" data-normal="0 0 0" id="button-model">
-        <div id="annotation">Another Part - WIP </div>
-      </button>
+    <button type="button" class="btn btn-primary label" slot="hotspot-1" data-position="0.0015960577971511286m 0.01929186952514063m -0.008258247480232586m" data-normal="0.6673477654357773m 0.5949364576095186m 0.4479928251377608m" data-visibility-attribute="visible">
+      <div class="Annotation">Aortic Arch</div>
+  </button><button type="button" class="btn btn-primary label" slot="hotspot-2" data-position="-0.009294900763533594m -0.012106035397566503m -0.0006678493717013328m" data-normal="-0.8430088136012758m -0.11744430539483743m 0.5249218754451884m" data-visibility-attribute="visible">
+      <div class="HotspotAnnotation">Inferior Vena Cava</div>
+  </button><button type="button" class="btn btn-primary label" slot="hotspot-3" data-position="-0.009542113931986318m -0.008332244257582591m 0.00019692984644300215m" data-normal="-0.7553762624119562m -0.29921217811697776m 0.5829912303380194m" data-visibility-attribute="visible">
+      <div class="HotspotAnnotation">Right Marginal Vein</div>
+  </button><button type="button" class="btn btn-primary label" slot="hotspot-4" data-position="-0.010523234469544264m -0.005700149397457576m -0.0006301253732158956m" data-normal="-0.9827825959477821m -0.17835796416054447m -0.04823697464232576m" data-visibility-attribute="visible">
+      <div class="HotspotAnnotation">Right Marginal Artery</div>
+  </button><button type="button" class="btn btn-primary label" slot="hotspot-5" data-position="-0.010779247789431762m -0.0009567737746380237m -0.0008194493999494103m" data-normal="-0.9808292060004051m 0.07178367731740169m -0.1811661456437329m" data-visibility-attribute="visible">
+      <div class="HotspotAnnotation">Right Coronary Artery</div>
+  </button><button type="button" class="btn btn-primary label" slot="hotspot-6" data-position="-0.009698275011147416m 0.0008975385361168m -0.007248096536683966m" data-normal="-0.9873733780906409m 0.047568478061614225m -0.15109947760590847m" data-visibility-attribute="visible">
+      <div class="HotspotAnnotation">Right Inferior Pulmonary Vein</div>
+  </button><button type="button" class="btn btn-primary label" slot="hotspot-7" data-position="-0.009799280716619415m 0.006344449670460498m -0.006521717253000627m" data-normal="-0.9449769911660938m 0.2800556578126915m 0.16907783619912253m" data-visibility-attribute="visible">
+      <div class="HotspotAnnotation">Right Superior Pulmonary Vein</div>
+  </button><button type="button" class="btn btn-primary label" slot="hotspot-8" data-position="-0.007547855604062201m 0.009079247548747426m 0.0007714579948572423m" data-normal="-0.5515114406751355m 0.8334316714721782m -0.03502541636480212m" data-visibility-attribute="visible">
+      <div class="HotspotAnnotation">Right Auricle of Heart</div>
+  </button><button type="button" class="btn btn-primary label" slot="hotspot-13" data-position="-0.0076162951169920475m 0.014041040779171975m -0.0008814066668433661m" data-normal="-0.22672609600826119m 0.04653029349629726m 0.9728464468640471m" data-visibility-attribute="visible">
+      <div class="HotspotAnnotation">Superior Vena Cava</div>
+  </button><button type="button" class="btn btn-primary label" slot="hotspot-14" data-position="-0.005313777151536941m 0.018007433955638367m -0.002241949918650001m" data-normal="0.9334265507214778m 0.35683494907303964m -0.037198031241528345m" data-visibility-attribute="visible">
+      <div class="HotspotAnnotation">Left Brachiocephalic Vein</div>
+  </button><button type="button" class="btn btn-primary label" slot="hotspot-15" data-position="-0.007497055244406996m 0.019248077098201293m -0.0027523811119732735m" data-normal="-0.01588603663141459m 0.9996364908991846m 0.021783477750574994m" data-visibility-attribute="visible">
+      <div class="HotspotAnnotation">Right Brachiocephalic Vein</div>
+  </button><button type="button" class="btn btn-primary label" slot="hotspot-17" data-position="0.00029350901630439063m -0.008736682632839592m 0.013793050489344193m" data-normal="-0.24770673044889743m -0.2575729182921413m 0.9339687186693072m" data-visibility-attribute="visible">
+      <div class="HotspotAnnotation">Right Ventricle</div>
+  </button><button type="button" class="btn btn-primary label" slot="hotspot-18" data-position="0.009025166082649584m -0.000698165109453313m 0.012483712887270789m" data-normal="0.2039177812231777m 0.524193366371943m 0.8268245600807139m" data-visibility-attribute="visible">
+      <div class="HotspotAnnotation">Left Ventricle</div>
+  </button><button type="button" class="btn btn-primary label" slot="hotspot-19" data-position="0.006052353421071935m 0.004463644204421311m 0.008112051277357738m" data-normal="0.23040789900366468m 0.776553093947276m 0.5864106857464574m" data-visibility-attribute="visible">
+      <div class="HotspotAnnotation">Anterior Interventricular Vein</div>
+  </button><button type="button" class="btn btn-primary label" slot="hotspot-20" data-position="0.008628082986819907m 0.006440364035110836m 0.003980066215683295m" data-normal="0.6736688993086007m 0.640664366775897m 0.36840111732726494m" data-visibility-attribute="visible">
+      <div class="HotspotAnnotation">Left Auricle of Heart</div>
+  </button><button type="button" class="btn btn-primary label" slot="hotspot-21" data-position="0.004369050705537513m 0.008590873557546317m 0.004852162446498386m" data-normal="0.2092418076577506m 0.7044575800222179m 0.6782015805624148m" data-visibility-attribute="visible">
+      <div class="HotspotAnnotation">Anterior Interventricular Artery</div>
+  </button><button type="button" class="btn btn-primary label" slot="hotspot-22" data-position="-0.0007282690966627727m 0.01213125486814662m -0.0003799338778867074m" data-normal="0.7154924829552701m 0.3307676442338954m 0.6153562158314986m" data-visibility-attribute="visible">
+      <div class="HotspotAnnotation">Pulmonary Trunk</div>
+  </button><button type="button" class="btn btn-primary label" slot="hotspot-23" data-position="-0.0036101233825337723m 0.015806394674420878m -0.00239261825586522m" data-normal="-0.6054133750963453m 0.5551668345813124m 0.5703195867541441m" data-visibility-attribute="visible">
+      <div class="HotspotAnnotation">Ascending Aorta</div>
+  </button><button type="button" class="btn btn-primary label" slot="hotspot-24" data-position="0.005561712813854368m 0.01273153051736761m -0.011009292365324766m" data-normal="0.7806836943821951m 0.3445533992935461m -0.5213596880859026m" data-visibility-attribute="visible">
+      <div class="HotspotAnnotation">Left Pulmonary Artery</div>
+  </button><button type="button" class="btn btn-primary label" slot="hotspot-25" data-position="-0.0022655846969849617m 0.01888537380631988m -0.005968831953957027m" data-normal="-0.28778954365688203m 0.956992835600323m 0.03663183276082221m" data-visibility-attribute="visible">
+      <div class="HotspotAnnotation">Brachiocephalic Trunk</div>
+  </button><button type="button" class="btn btn-primary label" slot="hotspot-26" data-position="-0.0004338473326977558m 0.019871272053712478m -0.008024831154487981m" data-normal="-0.3222950137289535m 0.9283971256804145m -0.18494513011647107m" data-visibility-attribute="visible">
+      <div class="HotspotAnnotation">Right Coronal Artery</div>
+  </button><button type="button" class="btn btn-primary label" slot="hotspot-27" data-position="0.0007263018665842975m 0.02008849526576623m -0.010273942156367871m" data-normal="-0.034906959056821084m 0.942255860864699m -0.333069657692697m" data-visibility-attribute="visible">
+      <div class="HotspotAnnotation">Right Subclavian Artery</div>
+  </button><button type="button" class="btn btn-primary label" slot="hotspot-28" data-position="0.003209232871405828m 0.010183261946482535m 0.003208594869436949m" data-normal="0.22401060821519886m 0.8206791358233744m 0.5256472233649258m" data-visibility-attribute="visible">
+      <div class="HotspotAnnotation">Epicardical Fat</div>
+  </button><button type="button" class="btn btn-primary label" slot="hotspot-30" data-position="0.009282479617175113m -0.010542543514232446m 0.015038387518185784m" data-normal="0.35220118200601386m -0.5342114671078703m 0.7684871084175866m" data-visibility-attribute="visible">
+      <div class="HotspotAnnotation">Pericardical Fat</div>
+  </button><button type="button" class="btn btn-primary label" slot="hotspot-31" data-position="0.004321805502537147m -0.004731201705527205m 0.014696392879859306m" data-normal="-0.21459966423104743m 0.2872113583826277m 0.9335184088853993m" data-visibility-attribute="visible">
+      <div class="HotspotAnnotation">Cardiac Muscle</div>
+  </button><button type="button" class="btn btn-primary label" slot="hotspot-33" data-position="0.00041317141569243766m 0.012389777783768915m -0.009181248264363671m" data-normal="-0.9988102383911693m -0.03578049155323641m -0.03313403249205066m" data-visibility-attribute="visible">
+      <div class="HotspotAnnotation">Left Pulmonary Artery</div>
+  </button><button type="button" class="btn btn-primary label" slot="hotspot-34" data-position="-0.01088213331823032m -0.0033492491111541548m 0.00338313223213741m" data-normal="-0.9777050095822781m -0.15066326548523215m 0.1462651519366253m" data-visibility-attribute="visible">
+      <div class="HotspotAnnotation">Right Atrium</div>
+  </button><button type="button" class="btn btn-primary label" slot="hotspot-35" data-position="-0.006536009513930055m 0.0031421247243961395m -0.009264154528889014m" data-normal="-0.4038053723852066m 0.14678432652166504m -0.9029925706894968m" data-visibility-attribute="visible">
+      <div class="HotspotAnnotation">Left Atrium</div>
+  </button><button type="button" class="btn btn-primary label" slot="hotspot-36" data-position="0.0022869543519474416m 0.013526095798908557m -0.014931581672246678m" data-normal="-0.9251350277032863m -0.37848839701962866m 0.029524800388015044m" data-visibility-attribute="visible">
+      <div class="HotspotAnnotation">Descending Aorta</div>
+  </button><button type="button" class="btn btn-primary label" slot="hotspot-37" data-position="-0.004121125985688188m 0.01387007962681038m -0.0054020566513926045m" data-normal="-0.8223224725291134m -0.27151184861206895m -0.5000670627394515m" data-visibility-attribute="visible">
+      <div class="HotspotAnnotation">Azygos Vein</div>
+  
 
     </model-viewer>
   </div>
