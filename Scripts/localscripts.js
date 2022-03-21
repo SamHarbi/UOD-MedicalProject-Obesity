@@ -148,7 +148,7 @@
     var controlButton = document.getElementById("controlButton")
     var OSP = document.getElementById("ObesitySlidePin").value;
 
-    model.src = "../Models/Level" + OSP + "/level_" + OSP + "_anim.glb"
+    model.src = "Models/Level" + OSP + "/level_" + OSP + "_anim.glb"
 
     
     if(model.paused == true)
@@ -170,7 +170,7 @@
     var model = document.getElementById("main");
     if(id == 0)
     {
-      model.src = "../Models/level_1_to_10_static.glb"
+      model.src = "Models/level_1_to_10_static.glb"
     }
   }
 
@@ -187,43 +187,43 @@
     var model = document.getElementById("main");
     if(id < 10)
     {
-      model.src = "../Models/Level1/level_1_anim.glb"
+      model.src = "Models/Level1/level_1_anim.glb"
     }
     if(id <= 20 && id > 10)
     {
-      model.src = "../Models/Level2/level_2_anim.glb"
+      model.src = "Models/Level2/level_2_anim.glb"
     }
     if(id <= 30 && id > 20)
     {
-      model.src = "../Models/Level3/level_3_anim.glb"
+      model.src = "Models/Level3/level_3_anim.glb"
     }
     if(id <= 40 && id > 30)
     {
-      model.src = "../Models/Level4/level_4_anim.glb"
+      model.src = "Models/Level4/level_4_anim.glb"
     }
     if(id <= 50 && id > 40)
     {
-      model.src = "../Models/Level5/level_5_anim.glb"
+      model.src = "Models/Level5/level_5_anim.glb"
     }
     if(id <= 60 && id > 50)
     {
-      model.src = "../Models/Level6/level_6_anim.glb"
+      model.src = "Models/Level6/level_6_anim.glb"
     }
     if(id <= 70 && id > 60)
     {
-      model.src = "../Models/Level7/level_7_anim.glb"
+      model.src = "Models/Level7/level_7_anim.glb"
     }
     if(id <= 80 && id > 70)
     {
-      model.src = "../Models/Level8/level_8_anim.glb"
+      model.src = "Models/Level8/level_8_anim.glb"
     }
     if(id <= 90 && id > 80)
     {
-      model.src = "../Models/Level9/level_9_anim.glb"
+      model.src = "Models/Level9/level_9_anim.glb"
     }
     if(id <= 100 && id > 90)
     {
-      model.src = "../Models/Level10/level_10_anim.glb"
+      model.src = "Models/Level10/level_10_anim.glb"
     }
 
     console.log(id);
