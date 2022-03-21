@@ -232,6 +232,11 @@
 
   showAR();
 
+if(!model.canActivateAR)
+  {
+    alert("Error! No AR Support on device");
+  }
+
 
 
 
