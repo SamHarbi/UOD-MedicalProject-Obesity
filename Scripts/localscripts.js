@@ -23,6 +23,7 @@
   var DSTick = document.getElementById("DSTick");
   var pinnedDS = document.getElementById("DS-card");
   var pinnedCount = 0;
+  var currOSP = 99;
 
   if(!changeCheckbox.checked)
   {
@@ -78,7 +79,7 @@
         root.style.setProperty('--main-size', "100%");
         break;
       case '5':
-        root.style.setProperty('--main-size', "180%");
+        root.style.setProperty('--main-size', "140%");
         break;
 
     }
@@ -145,7 +146,11 @@
   {
     var model = document.getElementById("main");
     var controlButton = document.getElementById("controlButton")
+    var OSP = document.getElementById("ObesitySlidePin").value;
 
+    model.src = "https://github.com/SamHarbi/UOD-MedicalProject-Obesity/tree/main/Models/Level" + OSP + "/level_" + OSP + "_anim.glb"
+
+    
     if(model.paused == true)
     {
       model.play();
@@ -160,48 +165,65 @@
     }
   }
 
+  function switchModelMode(id)
+  {
+    var model = document.getElementById("main");
+    if(id == 0)
+    {
+      model.src = "https://github.com/SamHarbi/UOD-MedicalProject-Obesity/tree/main/Models/level_1_to_10_static.glb"
+    }
+  }
+
+  function scrubberControl(id)
+  {
+    var model = document.getElementById("main");
+    model.currentTime = id;
+    model.play();
+    model.pause();
+  }
+
   function switchModel(id)
   {
     var model = document.getElementById("main");
     if(id < 10)
     {
-      model.src = "../Models/Level1/level_1_anim.glb"
+      model.src = "https://github.com/SamHarbi/UOD-MedicalProject-Obesity/tree/main/Models/Level1/level_1_anim.glb"
     }
     if(id <= 20 && id > 10)
     {
-      model.src = "../Models/Level2/level_2_anim.glb"
+      model.src = "https://github.com/SamHarbi/UOD-MedicalProject-Obesity/tree/main/Models/Level2/level_2_anim.glb"
     }
     if(id <= 30 && id > 20)
     {
-      model.src = "../Models/Level3/level_3_anim.glb"
+      model.src = "https://github.com/SamHarbi/UOD-MedicalProject-Obesity/tree/main/Models/Level3/level_3_anim.glb"
     }
     if(id <= 40 && id > 30)
     {
-      model.src = "../Models/Level4/level_4_anim.glb"
+      model.src = "https://github.com/SamHarbi/UOD-MedicalProject-Obesity/tree/main/Models/Level4/level_4_anim.glb"
     }
     if(id <= 50 && id > 40)
     {
-      model.src = "../Models/Level5/level_5_anim.glb"
+      model.src = "https://github.com/SamHarbi/UOD-MedicalProject-Obesity/tree/main/Models/Level5/level_5_anim.glb"
     }
     if(id <= 60 && id > 50)
     {
-      model.src = "../Models/Level6/level_6_anim.glb"
+      model.src = "https://github.com/SamHarbi/UOD-MedicalProject-Obesity/tree/main/Models/Level6/level_6_anim.glb"
     }
     if(id <= 70 && id > 60)
     {
-      model.src = "../Models/Level7/level_7_anim.glb"
+      model.src = "https://github.com/SamHarbi/UOD-MedicalProject-Obesity/tree/main/Models/Level7/level_7_anim.glb"
     }
     if(id <= 80 && id > 70)
     {
-      model.src = "../Models/Level8/level_8_anim.glb"
+      model.src = "https://github.com/SamHarbi/UOD-MedicalProject-Obesity/tree/main/Models/Level8/level_8_anim.glb"
     }
     if(id <= 90 && id > 80)
     {
-      model.src = "../Models/Level9/level_9_anim.glb"
+      model.src = "https://github.com/SamHarbi/UOD-MedicalProject-Obesity/tree/main/Models/Level9/level_9_anim.glb"
     }
     if(id <= 100 && id > 90)
     {
-      model.src = "../Models/Level10/level_10_anim.glb"
+      model.src = "https://github.com/SamHarbi/UOD-MedicalProject-Obesity/tree/main/Models/Level10/level_10_anim.glb"
     }
 
     console.log(id);

@@ -81,9 +81,10 @@
       <div class="card">
         <div class="card-body">
           <p class="lead">Control Panel</p>
+          <p>Please note that features labelled as experimental may not work as well</p>
           <h5><input id="labelTick" type="checkbox" class="js-switch" checked /> Labels </h5>
-          <h5><input type="checkbox" class="js-switch" autocomplete="off"> Descriptions </h5>
-          <h5><input type="checkbox" class="js-switch" autocomplete="off"> Lungs Visible </h5>
+          <h5><input type="checkbox" class="js-switch" autocomplete="off" disabled> Descriptions - Coming Soon </h5>
+          <h5><input type="checkbox" class="js-switch" autocomplete="off" disabled> Lungs Visible - Coming Soon </h5>
           <button type="button" class="btn btn-primary" onclick="showAR();" data-bs-toggle="collapse" href="#collapse">Marker AR</button>
           <button type="button" class="btn btn-primary">Quiz</button>
         </div>
@@ -95,7 +96,7 @@
           <button class="btn btn-primary" id="Lex" onclick="changeAccess('0')">Lexend</button> 
           <button class="btn btn-primary" id="Osa" onclick="changeAccess('2')">Times New Roman</button>
           <button class="btn btn-primary" id="Ody" onclick="changeAccess('1')">Open-Dyslexia</button>
-          <p style="margin-top: 5%;">Font Sizing</p>
+          <p style="margin-top: 5%;">Font Sizing - Experimental</p>
           <button class="btn btn-primary" id="Res" onclick="changeAccess('3')">Small Size</button> 
           <button class="btn btn-primary" id="Res" onclick="changeAccess('4')">Regular Size</button> 
           <button class="btn btn-primary" id="Lsi" onclick="changeAccess('5')">Large Size</button> 
@@ -110,7 +111,7 @@
           <label for="ObesitySlide"><p>Healthy</p></label>
           <input id="ObesitySlide" type="range" min="1" max="100" value="35" class="slider" style="width: 35%; position: relative;" oninput="switchModel(this.value);">
           <label for="ObesitySlide"><p>Obese</p></label>
-          <p><input type="checkbox" class="js-switch" id="DSTick" autocomplete="off"> Pin to Model View </p>
+          <p><input type="checkbox" class="js-switch" id="DSTick" autocomplete="off"> Pin to Model View - Experimental </p>
         </div>
       </div>
     </div>
@@ -163,7 +164,8 @@
             <button type="button" class="btn btn-secondary" onclick="switchModel(100);">10</button>
           </div>
           <br>
-          <label for="ObesitySlide" style="margin-left: 90%;"><p>Obese</p></label>
+          <label for="ObesitySlidePin" style="margin-left: 90%;"><p>Obese</p></label>
+          <input id="ObesitySlidePin" type="range" min="1" max="5" value="3" class="slider" style="width: 100%; position: relative;" oninput="scrubberControl(this.value);" onmousedown="switchModelMode(0);">
         </div>
       </div>
 
@@ -182,11 +184,14 @@
 
     </model-viewer>
   </div>
+  </div>
 
-  <div class="container-fluid" id="ARview" style="height: 100%;">
+  <div class="container-fluid" id="ARview" style="height: 100%; overflow: hidden;">
     <iframe src="MarkerARPage/MarkerARPage.html" title="AR Camera View"></iframe>
   </div>
 
+  
+  
 
 </body>
 
