@@ -86,6 +86,7 @@
           <h5><input type="checkbox" class="js-switch" autocomplete="off" disabled> Descriptions - Coming Soon </h5>
           <button type="button" class="btn btn-primary" onclick="showAR();" data-bs-toggle="collapse" href="#collapse">Marker AR</button>
           <button type="button" class="btn btn-primary" onclick="changeModels()">Lungs View</button>
+          <button type="button" class="btn btn-primary" onclick="loadQuiz();">Quiz</button>
         </div>
       </div>
       <div class="card">
@@ -117,14 +118,14 @@
     <div class="card" style="margin-bottom: 5%;">
       <div class="card-body">
         <p class="lead">Quiz</p>
-        <p>This is a question, what do you think?</p>
+        <p id="quizQuestion">This is a question, what do you think?</p>
         <p><input type="checkbox" id="Q1">
-        <label for="Q1"> Answer 1 </label></p>
+        <label for="Q1" id="LQ1"> Answer 1 </label></p>
         <p><input type="checkbox" id="Q2">
-        <label for="Q2"> Answer 2 </label></p>
+        <label for="Q2" id="LQ2"> Answer 2 </label></p>
         <p><input type="checkbox" id="Q3">
-        <label for="Q3"> Answer 3 </label></p>
-        <button type="button" class="btn btn-primary">Submit</button>
+        <label for="Q3" id="LQ3"> Answer 3 </label></p>
+        <button type="button" class="btn btn-primary" id="quizSubmit" onclick="submitQuiz();">Submit</button> <label id="result" style="color: #1DD3B0;">Well Done!</label>
       </div>
     </div>
   </div>
@@ -170,8 +171,8 @@
 
     <!-- 3D Model View -->
     <model-viewer alt="An Artistic Representation of a Heart" src="Models/Obese_heart_anim_final.glb" ar
-      ar-modes="webxr scene-viewer quick-look" environment-image="" poster="" seamless-poster shadow-intensity="1"
-      camera-controls style="background-color: #4A525A;" id="main" camera-target="0m 0m 0m" camera-controls enable-pan>
+      ar-modes="webxr scene-viewer quick-look" environment-image="" poster="Images/loading_page.gif" seamless-poster shadow-intensity="1"
+      camera-controls style="background-color: #4A525A;" id="main" camera-target="0m 0m 0m" camera-controls enable-pan loading="eager">
 
       
 
@@ -255,5 +256,6 @@
 </html>
 
 <!-- Import local Javascript-->
-<script src="Scripts/localscripts.js" async></script>
+<script src="Scripts/TestQuiz.js"></script>
+<script src="Scripts/localscripts.js"></script>
 <script src="Scripts/Panning.js" async></script>

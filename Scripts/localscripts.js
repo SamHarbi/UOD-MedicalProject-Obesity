@@ -13,7 +13,7 @@
 
   var root = document.documentElement;
 
-  //Required by Switchery - Setup each tickbox
+  //Required by Switchery - Setup each tickbox - adapted from documentation
   var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
   elems.forEach(function(html) {
     var switchery = new Switchery(html, { color: '#5299D3', jackColor: '#1DD3B0', secondaryColor: '#272727' });
@@ -26,6 +26,78 @@
   var currOSP = 99;
 
   var shownModel = 0 // 0 for heart, 1 for lungs
+
+  var Qnum = 1;
+
+  var parsedQuiz = JSON.parse(Quiz);
+
+  function loadQuiz()
+  {
+    //alert(parsedQuiz['Question1'][0]['1']);
+
+    quizQuestion = document.getElementById("quizQuestion");
+    quizQuestion.innerHTML = parsedQuiz['Question' +Qnum][0]["Question"];
+
+    quizAns1 = document.getElementById("LQ1");
+    quizAns1.innerHTML = parsedQuiz['Question' +Qnum][0]["1"];
+
+    quizAns2 = document.getElementById("LQ2");
+    quizAns2.innerHTML = parsedQuiz['Question' +Qnum][0]["2"];
+
+    quizAns3 = document.getElementById("LQ3");
+    quizAns3.innerHTML = parsedQuiz['Question' +Qnum][0]["3"];
+  }
+
+  function submitQuiz()
+  {
+    quizAns1 = document.getElementById("Q1");
+    quizAns2 = document.getElementById("Q2");
+    quizAns3 = document.getElementById("Q3");
+
+    answer = parsedQuiz['Question' +Qnum][0]["Answer"];
+
+    result = document.getElementById("result");
+
+    switch(answer){
+      case "1":
+        if(quizAns1.checked && !quizAns2.checked && !quizAns3.checked)
+        {
+          result.innerHTML = "Well Done! That is the correct answer"
+        }
+        else
+        {
+          result.innerHTML = "Wrong Answer, only the first option is correct"
+        }
+        break;
+      case "2":
+        if(!quizAns1.checked && quizAns2.checked && !quizAns3.checked)
+        {
+          result.innerHTML = "Well Done! That is the correct answer"
+        }
+        else
+        {
+          result.innerHTML = "Wrong Answer, only the second option is correct"
+        }
+        break;
+      case "3":
+        if(!quizAns1.checked && !quizAns2.checked && quizAns3.checked)
+        {
+          result.innerHTML = "Well Done! That is the correct answer"
+        }
+        else
+        {
+          result.innerHTML = "Wrong Answer, only the third option is correct"
+        }
+        break;
+    }
+
+    Qnum = Qnum + 1;
+    if(Qnum > 3)
+    {
+      Qnum = 1;
+    }
+    loadQuiz();
+  }
 
   if(!changeCheckbox.checked)
   {
@@ -96,6 +168,15 @@
     }
   }
 
+
+
+ 
+
+  function populate()
+  {
+    alert(Quiz["Question1"]["Answer"]);
+  }
+
   function show()
   {
     var tickBox = document.getElementById('labelTick');
@@ -151,6 +232,11 @@
     }
   }
 
+  function loadARModel()
+  {
+
+  }
+
   function animationControl()
   {
     var model = document.getElementById("main");
@@ -160,6 +246,7 @@
     if(pinnedDS.style.display == "block")
     {
       model.src = "Models/Level" + OSP + "/level_" + OSP + "_anim.glb"
+      alert("Models/Level" + OSP + "/level_" + OSP + "_anim.glb");
     }
 
     if(model.paused == true)
@@ -242,12 +329,12 @@
   }
 
   showAR();
+  loadQuiz();
 
   //if(!model.canActivateAR)
  // {
    // alert("Error! No AR Support on device");
   //}
-
 
 
 

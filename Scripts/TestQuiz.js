@@ -1,0 +1,1 @@
+var Quiz = '{"Question1": [{"1":"Option 1","2":"Option 2","3":"Option 3","Answer" : "1", "Question" : "What is the answer 1"}],"Question2": [{"1":"Option 1","2":"Option 2","3":"Option 3","Answer" : "3", "Question" : "What is the answer 2"}],"Question3": [{"1":"Option 1","2":"Option 2","3":"Option 3","Answer" : "2", "Question" : "What is the answer 3"}]}';
