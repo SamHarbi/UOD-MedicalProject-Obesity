@@ -1,6 +1,6 @@
 
   //disable right click to stop annoying popup when panning
-  //document.addEventListener('contextmenu', event => event.preventDefault());
+  document.addEventListener('contextmenu', event => event.preventDefault());
 
   let labelVisibility = true;
   var labels = document.getElementsByClassName("label");
