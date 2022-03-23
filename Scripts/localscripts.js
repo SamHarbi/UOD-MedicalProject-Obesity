@@ -31,6 +31,7 @@
 
   var parsedQuiz = JSON.parse(Quiz);
 
+
   function loadQuiz()
   {
     //alert(parsedQuiz['Question1'][0]['1']);
@@ -46,6 +47,9 @@
 
     quizAns3 = document.getElementById("LQ3");
     quizAns3.innerHTML = parsedQuiz['Question' +Qnum][0]["3"];
+
+    quizAns4 = document.getElementById("LQ4");
+    quizAns4.innerHTML = parsedQuiz['Question' +Qnum][0]["4"];
   }
 
   function submitQuiz()
@@ -53,14 +57,15 @@
     quizAns1 = document.getElementById("Q1");
     quizAns2 = document.getElementById("Q2");
     quizAns3 = document.getElementById("Q3");
+    quizAns4 = document.getElementById("Q4");
 
     answer = parsedQuiz['Question' +Qnum][0]["Answer"];
 
     result = document.getElementById("result");
 
     switch(answer){
-      case "1":
-        if(quizAns1.checked && !quizAns2.checked && !quizAns3.checked)
+      case 1:
+        if(quizAns1.checked && !quizAns2.checked && !quizAns3.checked && !quizAns4.checked)
         {
           result.innerHTML = "Well Done! That is the correct answer"
         }
@@ -69,8 +74,8 @@
           result.innerHTML = "Wrong Answer, only the first option is correct"
         }
         break;
-      case "2":
-        if(!quizAns1.checked && quizAns2.checked && !quizAns3.checked)
+      case 2:
+        if(!quizAns1.checked && quizAns2.checked && !quizAns3.checked && !quizAns4.checked)
         {
           result.innerHTML = "Well Done! That is the correct answer"
         }
@@ -79,8 +84,8 @@
           result.innerHTML = "Wrong Answer, only the second option is correct"
         }
         break;
-      case "3":
-        if(!quizAns1.checked && !quizAns2.checked && quizAns3.checked)
+      case 3:
+        if(!quizAns1.checked && !quizAns2.checked && quizAns3.checked && !quizAns4.checked)
         {
           result.innerHTML = "Well Done! That is the correct answer"
         }
@@ -89,10 +94,35 @@
           result.innerHTML = "Wrong Answer, only the third option is correct"
         }
         break;
+      case 4:
+        if(!quizAns1.checked && !quizAns2.checked && !quizAns3.checked && quizAns4.checked)
+        {
+          result.innerHTML = "Well Done! That is the correct answer"
+        }
+        else
+        {
+          result.innerHTML = "Wrong Answer, only the fourth option is correct"
+        }
+        break;
+      case 5:
+        if(quizAns1.checked && quizAns2.checked && quizAns3.checked && quizAns4.checked)
+        {
+          result.innerHTML = "Well Done! That is the correct answer"
+        }
+        else
+        {
+          result.innerHTML = "Wrong Answer, all of the options are correct"
+        }
+        break;
     }
 
+    quizAns1.checked = false;
+    quizAns2.checked = false;
+    quizAns3.checked = false;
+    quizAns4.checked = false;
+
     Qnum = Qnum + 1;
-    if(Qnum > 3)
+    if(Qnum > 10)
     {
       Qnum = 1;
     }
@@ -246,7 +276,6 @@
     if(pinnedDS.style.display == "block")
     {
       model.src = "Models/Level" + OSP + "/level_" + OSP + "_anim.glb"
-      alert("Models/Level" + OSP + "/level_" + OSP + "_anim.glb");
     }
 
     if(model.paused == true)
