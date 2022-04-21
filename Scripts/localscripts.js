@@ -31,6 +31,8 @@
 
   var parsedQuiz = JSON.parse(Quiz);
 
+  var overrideShow = false;
+
 
   function loadQuiz()
   {
@@ -198,7 +200,26 @@
     }
   }
 
+  function showLungs()
+  {
+    var model = document.getElementById("main");
+    var button = document.getElementById("lungs");
 
+    if(button.innerHTML == "Lung View - Experimental")
+    {
+      button.innerHTML = "Heart View";
+      model.src = "Models/Lungs/lungs.glb"
+      labelVisibility == true;
+
+    }
+    else
+    {
+      button.innerHTML = "Lung View - Experimental";
+      model.src = "Models/Level1/level_1_anim.glb"
+    }
+
+    show();
+  }
 
  
 
@@ -211,7 +232,7 @@
   {
     var tickBox = document.getElementById('labelTick');
     
-    if(labelVisibility == true && tickBox.checked == 0)
+    if(labelVisibility == true && tickBox.checked == 0 && overrideShow == false)
     {
       for(var i = 0; i < labels.length; i++)
       {
